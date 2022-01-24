@@ -42,12 +42,12 @@ def storage_information_view(request):
     long_or_not = [is_visit_long(visit) for visit in current_visits]
 
     non_closed_visits = []
-    for i in range(len(current_visits)):
+    for visit in range(len(current_visits)):
         curr_employee = {
-            'who_entered': who_entered[i],
-            'entered_at': entered_at[i],
-            'duration': duration[i],
-            'is_strange': long_or_not[i]
+            'who_entered': who_entered[visit],
+            'entered_at': entered_at[visit],
+            'duration': duration[visit],
+            'is_strange': long_or_not[visit]
         }
         non_closed_visits.append(curr_employee)
 
