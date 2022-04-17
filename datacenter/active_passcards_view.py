@@ -4,9 +4,10 @@ from django.shortcuts import render
 
 
 def active_passcards_view(request):
+    """Cформировать запрос обо всех сотрудниках с активными пропусками"""
 
     all_passcards = Passcard.objects.all()
     context = {
-        'active_passcards': all_passcards.filter(is_active=True),  # люди с активными пропусками
+        'active_passcards': all_passcards.filter(is_active=True), 
     }
     return render(request, 'active_passcards.html', context)

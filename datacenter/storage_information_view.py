@@ -25,7 +25,19 @@ def is_visit_long(visit, minutes=60):
     """Выясняем, длительный ли визит (на выходе булева переменная - true/false).
     Визит является длительным, если он больше mintues минут."""
 
-    return True if get_duration(visit) > minutes*60 else False
+    return get_duration(visit) > minutes*60
+
+
+def get_current_visit_info(visit):
+    """Получаем информацию о совершившем визит: во сколько и допустимо ли долго находился"""
+    
+    return {
+            'who_entered': visit.passcard.owner_name,
+            'entered_at': django.utils.timezone.localtime(visit.entered_at),
+            'duration': format_duration(get_duration(visit)),
+            'is_strange': is_visit_long(visit)
+    }
+
 
 
 def storage_information_view(request):
@@ -34,22 +46,7 @@ def storage_information_view(request):
     visits = Visit.objects.all()
     current_visits = Visit.objects.filter(leaved_at=None)
 
-    who_entered = [visit.passcard.owner_name for visit in current_visits]
-    entered_at = [django.utils.timezone.localtime(visit.entered_at) for visit in current_visits]
-    duration = [format_duration(get_duration(visit)) for visit in current_visits]
-    long_or_not = [is_visit_long(visit) for visit in current_visits]
-
-    non_closed_visits = []
-    for visit in range(len(current_visits)):
-        curr_employee = {
-            'who_entered': who_entered[visit],
-            'entered_at': entered_at[visit],
-            'duration': duration[visit],
-            'is_strange': long_or_not[visit]
-        }
-        non_closed_visits.append(curr_employee)
-
     context = {
-        'non_closed_visits': non_closed_visits,
+        'non_closed_visits': [get_current_visit_info(visit) for visit in current_visits],
     }
     return render(request, 'storage_information.html', context)

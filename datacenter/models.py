@@ -2,6 +2,7 @@ from django.db import models
 
 
 class Passcard(models.Model):
+
     is_active = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now=True)
     passcode = models.CharField(max_length=200, unique=True)
@@ -14,6 +15,7 @@ class Passcard(models.Model):
 
 
 class Visit(models.Model):
+
     created_at = models.DateTimeField(auto_now=True)
     passcard = models.ForeignKey(Passcard)
     entered_at = models.DateTimeField()

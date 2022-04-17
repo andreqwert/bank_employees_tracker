@@ -6,6 +6,17 @@ import time
 from datacenter.storage_information_view import get_duration, format_duration, is_visit_long
 
 
+def get_employee_visits_info(visit):
+    """Получаем информацию визитах: во сколько человек зашел в хранилище,
+    как долго и допустимо ли долго находился"""
+
+    return {
+            'entered_at': django.utils.timezone.localtime(visit.entered_at),
+            'duration': format_duration(get_duration(visit)),
+            'is_strange': is_visit_long(visit)
+    }
+
+
 def passcard_info_view(request, passcode):
     """Рендерим страницу всех посещений конкретного человека"""
 
@@ -13,20 +24,10 @@ def passcard_info_view(request, passcode):
     passcard = Passcard.objects.get(passcode=passcode)
 
     # получить все визиты по пропуску
-    visits_person = Visit.objects.filter(passcard_id=passcard)
+    visits = Visit.objects.filter(passcard_id=passcard)
 
-    entered_at = [django.utils.timezone.localtime(visit.entered_at) for visit in visits_person]
-    durations = [format_duration(get_duration(visit)) for visit in visits_person]
-    long_or_not = [is_visit_long(visit) for visit in visits_person]
-
-    this_passcard_visits = []
-    for visit in range(len(visits_person)):
-        curr_employee = {
-            'entered_at': entered_at[visit],
-            'duration': durations[visit],
-            'is_strange': long_or_not[visit]
-        }
-        this_passcard_visits.append(curr_employee)
+    # получить информацию о визитах сотрудником
+    this_passcard_visits = [get_employee_visits_info(visit) for visit in visits]
 
     context = {
         'passcard': passcard,
