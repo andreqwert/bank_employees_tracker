@@ -25,9 +25,7 @@ def is_visit_long(visit, minutes=60):
     """Выясняем, длительный ли визит (на выходе булева переменная - true/false).
     Визит является длительным, если он больше mintues минут."""
 
-    duration_seconds = get_duration(visit)
-    flag = True if duration_seconds > minutes*60 else False
-    return flag
+    return True if get_duration(visit) > minutes*60 else False
 
 
 def storage_information_view(request):
