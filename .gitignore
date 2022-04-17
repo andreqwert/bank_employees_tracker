@@ -6,6 +6,7 @@ project/__pycache__/
 # Игнорировать файл 
 /datacenter/__init__.py
 datacenter/.DS_Store
+__init.py__
 .DS_Store
 
 
