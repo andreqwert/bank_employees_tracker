@@ -1,5 +1,7 @@
 # django-orm-watching-storage
 
+This repo contains of bank employees tracker. With a help of the system you are able to follow for the strange entries of employees who is entered to the bank storage and was remained there more than allowable amount of time. 
+
 ## Installation
 ```
 pip3 install -r requirements.txt
@@ -9,5 +11,5 @@ pip3 install -r requirements.txt
 ```
 python3 main.py
 ```
+You may call the help of project description with `python3 main.py --help`
 
-Репозиторий с сайтом для урока «Пишем пульт охранника банка» курса dvmn.org
