@@ -1,6 +1,6 @@
 # django-orm-watching-storage
 
-This repo contains of bank employees tracker. With a help of the system you are able to follow for the strange entries of employees who is entered to the bank storage and was remained there more than allowable amount of time. 
+This repo contains bank employees tracker. With a help of the system you are able to follow for the strange entries of employees who entered to the bank storage and was remained there more than allowable amount of time. 
 
 ## Installation
 ```
