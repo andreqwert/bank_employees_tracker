@@ -1,10 +1,13 @@
 # Игнорировать папку
 __pycache__/
 project/__pycache__/
+datacenter/__pycache__/
 
 
 # Игнорировать файл 
 __init__.py
 datacenter/.DS_Store
+datacenter/__init__.py
 .DS_Store
+
 
