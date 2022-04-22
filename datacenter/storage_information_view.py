@@ -11,7 +11,10 @@ def format_duration(duration):
 
 
 def get_duration(visit):
-    """Вычисляем длительность визита"""
+    """Вычисляем длительность визита.
+
+    Выход:
+    duration = время в секундах"""
 
     if visit.leaved_at:
         duration = (visit.leaved_at - visit.entered_at).total_seconds()
@@ -21,7 +24,7 @@ def get_duration(visit):
     return duration
 
 
-def is_visit_long(visit, minutes=60):
+def is_visit_long(visit, minutes=15):
     """Выясняем, длительный ли визит (на выходе булева переменная - true/false).
     Визит является длительным, если он больше mintues минут."""
 

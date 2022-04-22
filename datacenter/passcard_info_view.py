@@ -20,13 +20,8 @@ def get_employee_visits_info(visit):
 def passcard_info_view(request, passcode):
     """Рендерим страницу всех посещений конкретного человека"""
 
-    # получить пропуск по passcode
     passcard = Passcard.objects.get(passcode=passcode)
-
-    # получить все визиты по пропуску
     visits = Visit.objects.filter(passcard_id=passcard)
-
-    # получить информацию о визитах сотрудником
     this_passcard_visits = [get_employee_visits_info(visit) for visit in visits]
 
     context = {
