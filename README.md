@@ -8,14 +8,14 @@ Python3 should be already installed. Then use `pip3` to install dependencies:
 ```
 pip3 install -r requirements.txt
 ```
-If you have Mac M1 then you can meet some troubles during the `psycopg2` installation. If any, please check [this advice](https://stackoverflow.com/a/66958415/5468025)
+If you have Mac M1 then you can meet some troubles during the `psycopg2` installation. If any, please check [this advice](https://stackoverflow.com/a/66958415/5468025).
 
 ## Quick start
 ```
 python3 manage.py runserver 0.0.0.0:8000
 ```
-You may call the help of project description with `python3 main.py --help`
+You may call the project description with `python3 main.py --help`
 
 ## Project goals
-The code is written for educational purposes.
+This code is written for educational purposes.
 
