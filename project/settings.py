@@ -11,18 +11,6 @@ DATABASES = {
     'default': dj_database_url.parse(DJ_DATABASE_URL)
 }
 
-
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#         'HOST': env('HOST'),
-#         'PORT': env('PORT'),
-#         'NAME': env('NAME'),
-#         'USER': "guard",
-#         'PASSWORD': env('PASSWORD'),
-#     }
-# }
-
 SECRET_KEY = env('SECRET_KEY')
 
 ALLOWED_HOSTS = env.list('ALLOWED_HOSTS')
