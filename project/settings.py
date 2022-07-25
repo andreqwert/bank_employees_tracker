@@ -1,27 +1,35 @@
-from dotenv import load_dotenv
 import os
+from environs import Env
+import dj_database_url
 
 
-load_dotenv()
+env = Env()
+env.read_env()
 
+DJ_DATABASE_URL = env('DATABASE_URL')
 DATABASES = {
-    'default': {
-        'ENGINE': os.getenv('ENGINE'),
-        'HOST': os.getenv('HOST'),
-        'PORT': os.getenv('PORT'),
-        'NAME': os.getenv('NAME'),
-        'USER': "guard",
-        'PASSWORD': os.getenv('PASSWORD'),
-    }
+    'default': dj_database_url.parse(DJ_DATABASE_URL)
 }
 
-SECRET_KEY = os.getenv('SECRET_KEY')
 
-ALLOWED_HOSTS = ['*']
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'HOST': env('HOST'),
+#         'PORT': env('PORT'),
+#         'NAME': env('NAME'),
+#         'USER': "guard",
+#         'PASSWORD': env('PASSWORD'),
+#     }
+# }
+
+SECRET_KEY = env('SECRET_KEY')
+
+ALLOWED_HOSTS = env.list('ALLOWED_HOSTS')
 
 ROOT_URLCONF = "project.urls"
 
-DEBUG = bool(os.getenv("DEBUG").title())
+DEBUG = env.bool("DEBUG")
 
 INSTALLED_APPS = ['datacenter']
 
